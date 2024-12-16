@@ -19,7 +19,14 @@ server.use("/user",UserRouter)
 server.use("/blog",BlogRouter)
 
 mongoose.connect(process.env.MONGO_URL)
- .then(()=>console.log("db connected"))
+ .then(()=>{
+    
+    console.log("db connected")
+    server.listen(7000,(req,res)=>
+        {
+            console.log("server is up on 7000")
+        })
+})
  .catch((err)=>console.log(err))
 
 
@@ -39,7 +46,3 @@ mongoose.connect(process.env.MONGO_URL)
    
 server.use(errMiddleWare)
 
- server.listen(7000,(req,res)=>
-    {
-        console.log("server is up on 7000")
-    })
